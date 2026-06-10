@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="report-page">
+    <h1>📈 Отчёт по заказам</h1>
+
+    <div class="report-stats">
+        <div class="stat-card">
+            <div class="stat-number">{{ total_orders }}</div>
+            <div class="stat-label">Всего заказов</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ revenue|floatformat:0 }} ₽</div>
+            <div class="stat-label">Выручка (выполненные)</div>
+        </div>
+    </div>
+
+    <div class="report-section">
+        <h2>Статусы заказов</h2>
+        <div class="status-list">
+            {% for stat in status_stats %}
+            <div class="status-item">
+                <span class="status-name">
+                    {% if stat.status == 'new' %}🆕 Новый
+                    {% elif stat.status == 'confirmed' %}✅ Подтверждён
+                    {% elif stat.status == 'completed' %}🏆 Выполнен
+                    {% elif stat.status == 'canceled' %}❌ Отменён
+                    {% endif %}
+                </span>
+                <span class="status-count">{{ stat.cnt }}</span>
+                <div class="status-bar">
+                    <div class="status-bar-fill" style="width: {% widthratio stat.cnt total_orders 100 %}%;"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="report-section">
+        <h2>🔥 Топ-5 популярных услуг</h2>
+        <ul class="top-services">
+            {% for s in popular_services %}
+            <li>
+                <span class="service-name">{{ s.service__title }}</span>
+                <span class="service-count">{{ s.cnt }} заказ(ов)</span>
+            </li>
+            {% empty %}
+            <li>Нет данных</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <a href="{% url 'services:home' %}" class="btn">На главную</a>
+</div>
+{% endblock %}

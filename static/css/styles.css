@@ -1,0 +1,686 @@
+/* ============================================
+   ФИТНЕС-СТУДИЯ — ТЁМНАЯ СТИЛЬНАЯ ТЕМА
+   Энергия, спорт, ночной режим
+   ============================================ */
+
+/* ----- Базовые настройки ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #0a0f1e;
+    color: #e2e8f0;
+    line-height: 1.5;
+}
+
+/* ----- Шапка с градиентом ----- */
+header {
+    background: rgba(10, 15, 30, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.6rem;
+    background: linear-gradient(135deg, #10b981, #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #cbd5e1;
+    font-weight: 500;
+    transition: 0.2s;
+    padding: 6px 0;
+    position: relative;
+}
+
+nav a:hover {
+    color: #10b981;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #10b981;
+    transition: width 0.2s;
+    box-shadow: 0 0 6px #10b981;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a:last-child {
+    margin-left: auto;
+}
+
+/* ----- Контейнер с двумя колонками ----- */
+.container {
+    max-width: 1300px;
+    margin: 30px auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 32px;
+}
+
+/* ----- Сайдбар (тёмный) ----- */
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: #111827;
+    border-radius: 32px;
+    padding: 24px;
+    border: 1px solid #1f2937;
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 90px;
+    align-self: start;
+}
+
+.sidebar h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    padding-left: 12px;
+    border-left: 4px solid #10b981;
+    color: #f1f5f9;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.sidebar ul li {
+    margin-bottom: 8px;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 8px 14px;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 40px;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.sidebar ul li a:hover {
+    background: #1f2937;
+    color: #10b981;
+    transform: translateX(5px);
+}
+
+/* ----- Основной контент ----- */
+.content {
+    flex: 1;
+}
+
+/* ----- Сетка карточек услуг ----- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* ----- Карточка услуги (тёмная) ----- */
+.service-card {
+    background: #111827;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid #1f2937;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    border-color: #10b981;
+    box-shadow: 0 25px 35px -12px rgba(16, 185, 129, 0.2);
+}
+
+.service-card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.service-card:hover img {
+    transform: scale(1.02);
+}
+
+.service-card-content {
+    padding: 22px;
+}
+
+.service-card h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #f1f5f9;
+}
+
+.price {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #10b981;
+    margin-bottom: 4px;
+    text-shadow: 0 0 4px rgba(16, 185, 129, 0.3);
+}
+
+.price span {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #64748b;
+}
+
+.duration {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+}
+
+.description {
+    color: #cbd5e1;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.btn {
+    display: inline-block;
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn:hover {
+    background: #059669;
+    transform: scale(1.02);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #10b981;
+    color: #10b981;
+}
+
+.btn-outline:hover {
+    background: #10b981;
+    color: white;
+}
+
+/* ----- Детальная страница услуги ----- */
+.service-detail {
+    background: #111827;
+    border-radius: 32px;
+    padding: 32px;
+    border: 1px solid #1f2937;
+    box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.3);
+}
+
+.service-detail img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 24px;
+    margin-bottom: 24px;
+    border: 1px solid #1f2937;
+}
+
+.service-detail .price {
+    font-size: 2rem;
+    margin: 15px 0 10px;
+}
+
+.service-detail .duration, .service-detail .category {
+    margin: 10px 0;
+    color: #94a3b8;
+}
+
+.service-detail .tags {
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.service-detail .tags a {
+    background: #1f2937;
+    padding: 6px 14px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #cbd5e1;
+    transition: 0.2s;
+}
+
+.service-detail .tags a:hover {
+    background: #10b981;
+    color: #0f172a;
+}
+
+/* ----- Формы (тёмная тема) ----- */
+.form-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #111827;
+    border-radius: 32px;
+    padding: 32px;
+    border: 1px solid #1f2937;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
+}
+
+.form-container h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 24px;
+    color: #f1f5f9;
+}
+
+.form-container form p {
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #cbd5e1;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 24px;
+    font-size: 1rem;
+    color: #f1f5f9;
+    transition: 0.2s;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    border-color: #10b981;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+.form-container button {
+    width: 100%;
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 40px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.form-container button:hover {
+    background: #059669;
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+.form-error {
+    color: #f87171;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+/* ----- Таблицы (управление заказами) ----- */
+table {
+    width: 100%;
+    background: #111827;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid #1f2937;
+}
+
+th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #1f2937;
+}
+
+th {
+    background: #1e293b;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+tr:hover {
+    background: #1f2937;
+}
+
+/* ----- Адаптивность ----- */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        position: static;
+    }
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    nav {
+        justify-content: center;
+    }
+    nav a:last-child {
+        margin-left: 0;
+    }
+}
+/* ===== Страница "О клубе" ===== */
+.about-page {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-hero {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #10b981, #0284c7);
+    border-radius: 40px;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.about-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    margin-bottom: 50px;
+}
+
+.about-card {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 28px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    border-color: #10b981;
+}
+
+.about-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+
+.about-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: #f1f5f9;
+}
+
+.about-card p {
+    color: #94a3b8;
+}
+
+.about-contacts {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 32px;
+    padding: 32px;
+    text-align: center;
+}
+
+.about-contacts h2 {
+    color: #10b981;
+    margin: 20px 0 15px;
+}
+
+.contacts-list div {
+    margin: 12px 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.contacts-list span {
+    font-size: 1.4rem;
+}
+
+.schedule {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    max-width: 300px;
+    margin: 0 auto 30px;
+    text-align: left;
+    color: #cbd5e1;
+}
+/* ===== Страница отчёта ===== */
+.report-page {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.report-stats {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 28px;
+    padding: 24px;
+    text-align: center;
+    flex: 1;
+    transition: all 0.2s;
+}
+
+.stat-card:hover {
+    border-color: #10b981;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #10b981;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.report-section {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 28px;
+    padding: 24px;
+    margin-bottom: 30px;
+}
+
+.report-section h2 {
+    margin-bottom: 20px;
+    color: #f1f5f9;
+    font-size: 1.4rem;
+}
+
+.status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.status-name {
+    width: 130px;
+    font-weight: 500;
+    color: #cbd5e1;
+}
+
+.status-count {
+    width: 40px;
+    font-weight: 600;
+    color: #10b981;
+}
+
+.status-bar {
+    flex: 1;
+    height: 8px;
+    background: #1f2937;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.status-bar-fill {
+    height: 100%;
+    background: #10b981;
+    border-radius: 10px;
+}
+
+.top-services {
+    list-style: none;
+}
+
+.top-services li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #1f2937;
+}
+
+.top-services .service-name {
+    font-weight: 500;
+}
+
+.top-services .service-count {
+    color: #10b981;
+    font-weight: 600;
+}
+/* ===== Специальные стили для страницы "Добавить услугу" ===== */
+.add-service-page .form-container {
+    margin-top: 20px;
+}
+
+.add-service-page .form-container input,
+.add-service-page .form-container select,
+.add-service-page .form-container textarea {
+    background: #1e293b;
+    border-color: #334155;
+    color: #e2e8f0;
+}
+
+.add-service-page .form-container input:focus,
+.add-service-page .form-container select:focus,
+.add-service-page .form-container textarea:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16,185,129,0.2);
+}
+
+/* ===== Специальные стили для страницы "Управление заказами" ===== */
+.orders-management h1 {
+    margin-bottom: 20px;
+}
+
+.orders-management table {
+    margin-bottom: 20px;
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+}
+
+.orders-management select {
+    background: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+    padding: 6px 12px;
+    border-radius: 24px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.orders-management button {
+    background: #10b981;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.orders-management button:hover {
+    background: #059669;
+}
+
+/* Для адаптации таблицы на маленьких экранах */
+@media (max-width: 768px) {
+    .orders-management table {
+        font-size: 12px;
+    }
+    .orders-management select, .orders-management button {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+}

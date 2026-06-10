@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Мои заказы</h1>
+<ul>
+    {% for order in orders %}
+    <li>
+        <strong>{{ order.service.title }}</strong> – 
+        {{ order.booking_date|date:"d.m.Y" }} {{ order.booking_time|time:"H:i" }} – 
+        Статус: {{ order.get_status_display }}
+    </li>
+    {% empty %}
+    <li>У вас пока нет заказов.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'services:home' %}">На главную</a>
+{% endblock %}

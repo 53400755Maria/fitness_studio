@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<div class="services-grid">
+    {% for service in services %}
+    <div class="service-card">
+        {% if service.photo %}
+            <img src="{{ service.photo.url }}" alt="{{ service.title }}">
+        {% else %}
+            <img src="/media/services/default.jpg" alt="Фото отсутствует" style="background: #e2e8f0;">
+        {% endif %}
+        <div class="service-card-content">
+            <h2>{{ service.title }}</h2>
+            <div class="price">{{ service.price }} руб.</div>
+            <div class="duration">⏱ {{ service.duration }} мин</div>
+            <div class="description">{{ service.description|truncatewords:15 }}</div>
+            <a href="{{ service.get_absolute_url }}">Подробнее →</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>Нет услуг</p>
+    {% endfor %}
+</div>
+{% endblock %}

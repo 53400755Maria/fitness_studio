@@ -1,0 +1,114 @@
+[
+{
+  "model": "services.category",
+  "pk": 1,
+  "fields": {
+    "name": "Силовые тренировки",
+    "slug": "silovye-trenirovki"
+  }
+},
+{
+  "model": "services.category",
+  "pk": 2,
+  "fields": {
+    "name": "Кардио",
+    "slug": "kardio"
+  }
+},
+{
+  "model": "services.category",
+  "pk": 3,
+  "fields": {
+    "name": "Йога",
+    "slug": "joga"
+  }
+},
+{
+  "model": "services.category",
+  "pk": 4,
+  "fields": {
+    "name": "Стретчинг",
+    "slug": "stretching"
+  }
+},
+{
+  "model": "services.tag",
+  "pk": 1,
+  "fields": {
+    "name": "Новичок",
+    "slug": "novichok"
+  }
+},
+{
+  "model": "services.tag",
+  "pk": 2,
+  "fields": {
+    "name": "Средний",
+    "slug": "srednij"
+  }
+},
+{
+  "model": "services.tag",
+  "pk": 3,
+  "fields": {
+    "name": "Профи",
+    "slug": "profi"
+  }
+},
+{
+  "model": "services.tag",
+  "pk": 4,
+  "fields": {
+    "name": "Групповое",
+    "slug": "gruppovoe"
+  }
+},
+{
+  "model": "services.tag",
+  "pk": 5,
+  "fields": {
+    "name": "Индивидуальное",
+    "slug": "individualnoe"
+  }
+},
+{
+  "model": "services.service",
+  "pk": 1,
+  "fields": {
+    "title": "Силовая тренировка с тренером",
+    "slug": "silovaya-trenirovka-s-trenerom",
+    "description": "Интенсивное занятие с отягощениями...",
+    "price": "1500.00",
+    "duration": 60,
+    "category": 1,
+    "photo": "services/2026/06/10/силовая.webp",
+    "is_published": true,
+    "time_create": "2026-06-10T19:24:52.153Z",
+    "time_update": "2026-06-10T19:24:52.153Z",
+    "tags": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "services.service",
+  "pk": 2,
+  "fields": {
+    "title": "Кардиотренировка",
+    "slug": "kardiotrenirovka",
+    "description": "Интервальная высокоинтенсивная тренировка для сжигания жира.",
+    "price": "1200.00",
+    "duration": 45,
+    "category": 2,
+    "photo": "services/2026/06/10/кардио.webp",
+    "is_published": true,
+    "time_create": "2026-06-10T20:02:32.238Z",
+    "time_update": "2026-06-10T20:02:32.238Z",
+    "tags": [
+      2,
+      4
+    ]
+  }
+}
+]

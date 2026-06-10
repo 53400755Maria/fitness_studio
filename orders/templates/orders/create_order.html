@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Запись на услугу: {{ service.title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Оформить заказ</button>
+    </form>
+</div>
+{% endblock %}

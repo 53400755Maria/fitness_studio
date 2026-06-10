@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="orders-management">
+    <h1>Управление заказами (менеджер)</h1>
+    <div style="overflow-x: auto;">
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Пользователь</th>
+                    <th>Услуга</th>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Статус</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.user.username }}</td>
+                    <td>{{ order.service.title }}</td>
+                    <td>{{ order.booking_date|date:"d.m.Y" }}</td>
+                    <td>{{ order.booking_time|time:"H:i" }}</td>
+                    <td class="status-{{ order.status }}">
+                        {{ order.get_status_display }}
+                    </td>
+                    <td class="action-cell">
+                        <form method="post" action="{% url 'orders:change_status' order.id %}">
+                            {% csrf_token %}
+                            <select name="status">
+                                <option value="new" {% if order.status == 'new' %}selected{% endif %}>Новый</option>
+                                <option value="confirmed" {% if order.status == 'confirmed' %}selected{% endif %}>Подтверждён</option>
+                                <option value="completed" {% if order.status == 'completed' %}selected{% endif %}>Выполнен</option>
+                                <option value="canceled" {% if order.status == 'canceled' %}selected{% endif %}>Отменён</option>
+                            </select>
+                            <button type="submit">Изменить</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" style="text-align: center;">Нет заказов.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-top: 20px;">
+        <a href="{% url 'services:home' %}" class="btn">На главную</a>
+    </div>
+</div>
+{% endblock %}

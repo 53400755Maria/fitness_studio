@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="about-page">
+<div class="about-hero">
+    <img src="/media/static/fitnes.jpg" alt="Фитнес-студия" style="width:100%; max-height: 300px; object-fit: cover; border-radius: 24px; margin-bottom: 20px;">
+    <h1>О фитнес-клубе</h1>
+    <p>Твой путь к здоровью и энергии начинается здесь</p>
+</div>
+
+    <div class="about-grid">
+        <div class="about-card">
+            <div class="about-icon">🏋️</div>
+            <h3>Профессиональное оборудование</h3>
+            <p>Современные тренажёры премиум-класса, зона свободных весов, кардиозона.</p>
+        </div>
+        <div class="about-card">
+            <div class="about-icon">🧘</div>
+            <h3>Групповые программы</h3>
+            <p>Йога, пилатес, стретчинг, HIIT, танцы – более 20 направлений.</p>
+        </div>
+        <div class="about-card">
+            <div class="about-icon">👨‍🏫</div>
+            <h3>Опытные тренеры</h3>
+            <p>Сертифицированные инструкторы помогут достичь цели без травм.</p>
+        </div>
+        <div class="about-card">
+            <div class="about-icon">🕒</div>
+            <h3>Удобный график</h3>
+            <p>Работаем ежедневно с 7 утра до 23 вечера.</p>
+        </div>
+    </div>
+
+    <div class="about-contacts">
+        <h2>Контакты</h2>
+        <div class="contacts-list">
+            <div><span>📍</span> г. Казань, ул. Спортивная, 15</div>
+            <div><span>📞</span> +7 (495) 123-45-67</div>
+            <div><span>✉️</span> info@fitness-studio.ru</div>
+        </div>
+        <h2>График работы</h2>
+        <div class="schedule">
+            <div>Пн–Пт</div><div>07:00 – 23:00</div>
+            <div>Сб–Вс</div><div>09:00 – 21:00</div>
+        </div>
+        <a href="{% url 'services:home' %}" class="btn">На главную →</a>
+    </div>
+</div>
+{% endblock %}
