@@ -126,3 +126,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Static files directories (if you store static files not only inside apps)
 STATICFILES_DIRS = [BASE_DIR / 'static']   # мы создадим папку static позже
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+load_dotenv(BASE_DIR / '.env')
+
+YANDEX_GPT_API_KEY = os.getenv('YANDEX_GPT_API_KEY')
+YANDEX_GPT_FOLDER_ID = os.getenv('YANDEX_GPT_FOLDER_ID')

@@ -14,7 +14,11 @@
             <a href="{% url 'services:about' %}">О клубе</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'users:profile' %}">{{ user.username }}</a>
-                <a href="{% url 'users:logout' %}">Выйти</a>
+                <a href="{% url 'services:map_page' %}">Карта зала</a>
+                <form action="{% url 'users:logout' %}" method="post" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" style="background: none; border: none; color: #10b981; cursor: pointer; font: inherit; padding: 0;">Выйти</button>
+</form>
                 {% if perms.services.add_service %}
                     <a href="{% url 'services:add_service' %}">Добавить услугу</a>
                 {% endif %}
@@ -48,5 +52,82 @@
             {% endblock %}
         </main>
     </div>
+<!-- ИИ-Помощник (виджет чата) -->
+<div class="ai-chat-widget" style="position: fixed; bottom: 20px; right: 20px; width: 300px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); overflow: hidden; z-index: 1000;">
+    <div class="chat-header" style="background: #10b981; padding: 10px; color: white; text-align: center; cursor: pointer;">
+        💬 ИИ-Помощник
+    </div>
+    <div class="chat-body" style="display: none; flex-direction: column; height: 400px;">
+        <div class="chat-messages" style="flex-grow: 1; padding: 10px; overflow-y: auto; background: #ffffff;">
+            <div class="message bot" style="margin-bottom: 8px; padding: 8px 12px; border-radius: 16px; max-width: 80%; background: #e2e8f0; color: #1e293b;">Привет! Я — ИИ-ассистент. Спросите меня о наших услугах или расписании.</div>
+        </div>
+        <div class="chat-input" style="display: flex; border-top: 1px solid #eee;">
+            <input type="text" id="userInput" placeholder="Введите вопрос..." style="flex-grow: 1; border: none; padding: 10px;">
+            <button id="sendBtn" style="background: #10b981; border: none; padding: 10px 15px; color: white; cursor: pointer;">Отправить</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const chatWidget = document.querySelector('.ai-chat-widget');
+    const chatHeader = chatWidget.querySelector('.chat-header');
+    const chatBody = chatWidget.querySelector('.chat-body');
+    const messagesDiv = chatWidget.querySelector('.chat-messages');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    chatHeader.addEventListener('click', () => {
+        const isVisible = chatBody.style.display === 'flex';
+        chatBody.style.display = isVisible ? 'none' : 'flex';
+    });
+
+    function addMessage(text, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.style.marginBottom = '8px';
+        messageDiv.style.padding = '8px 12px';
+        messageDiv.style.borderRadius = '16px';
+        messageDiv.style.maxWidth = '80%';
+        messageDiv.style.wordWrap = 'break-word';
+        if (isUser) {
+            messageDiv.style.background = '#10b981';
+            messageDiv.style.color = 'white';
+            messageDiv.style.marginLeft = 'auto';
+            messageDiv.style.textAlign = 'right';
+        } else {
+            messageDiv.style.background = '#e2e8f0';
+            messageDiv.style.color = '#1e293b';
+        }
+        messageDiv.textContent = text;
+        messagesDiv.appendChild(messageDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    async function sendMessage() {
+        const message = userInput.value.trim();
+        if (!message) return;
+        addMessage(message, true);
+        userInput.value = '';
+        try {
+            const response = await fetch('/api/chat/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            });
+            const data = await response.json();
+            if (data.response) {
+                addMessage(data.response, false);
+            } else {
+                addMessage('Извините, произошла ошибка. Попробуйте позже.', false);
+            }
+        } catch (error) {
+            addMessage('Ошибка соединения. Проверьте интернет.', false);
+        }
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+</script>
 </body>
 </html>
